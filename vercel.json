@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
+  "functions": {
+    "app/api/**/*.ts": {
+      "maxDuration": 30
     }
-  ],
+  },
+  "env": {
+    "MONGODB_URI": "@mongodb-uri"
+  },
   "routes": [
     {
       "src": "/api/(.*)",
@@ -15,13 +17,5 @@
       "src": "/(.*)",
       "dest": "/$1"
     }
-  ],
-  "env": {
-    "MONGODB_URI": "@mongodb-uri"
-  },
-  "functions": {
-    "app/api/**/*.ts": {
-      "maxDuration": 30
-    }
-  }
+  ]
 }
